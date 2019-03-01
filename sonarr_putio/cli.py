@@ -4,9 +4,12 @@ import os
 import click
 from . import sonarr_putio
 
+
 @click.group()
 def cli():
+    """Main entrypoint for command line interface"""
     click.echo('Starting put.io sonarr custom script...')
+
 
 @cli.command()
 @click.option(
@@ -29,7 +32,6 @@ def cli():
 )
 def setup(putio_folder, black_hole_folder, watch_folder, token):
     """Take configuration options and write to settings.txt
-
     Args:
         putio_folder (int): Folder ID to upload to on put.io
         black_hole_folder (str): Path to the black hole folder where sonarr puts the
@@ -49,6 +51,7 @@ def setup(putio_folder, black_hole_folder, watch_folder, token):
     settings.write(str(putio_folder) + '\n')
     settings.close()
 
+
 @cli.command()
 def upload():
     """Uploads Magnet Files from Sonnar to Put.io
@@ -66,4 +69,4 @@ def download():
 
 
 if __name__ == '__main__':
-    setup()
+    cli()

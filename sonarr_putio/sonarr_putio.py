@@ -7,6 +7,7 @@ import putiopy as putio
 
 
 def get_settings():
+    """Get Settings"""
     with open(click.get_app_dir('sonarr_putio')) as settings:
         lines = settings.read().splitlines()
         return lines
