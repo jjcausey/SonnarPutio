@@ -1,7 +1,4 @@
 putio.py
-tkFileDialog
-tkSimpleDialog
-webbrowser
-csv
+
 shutil
 time
