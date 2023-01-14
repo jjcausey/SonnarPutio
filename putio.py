@@ -10,7 +10,8 @@ except ImportError:
     from urllib.parse import urlencode
 from datetime import datetime
 
-import tus
+from tusclient.uploader import Uploader
+
 import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
@@ -210,7 +211,8 @@ class _File(_BaseResource):
         if name:
             metadata['name'] = name
         with open(path) as f:
-            tus.upload(f, TUS_UPLOAD_URL, file_name=name, headers=headers, metadata=metadata)
+            my_uploader = Uploader(f,url=TUS_UPLOAD_URL, file_path=name, headers=headers, metadata=metadata)
+            my_uploader.upload()
 
     def dir(self):
         """List the files under directory."""
